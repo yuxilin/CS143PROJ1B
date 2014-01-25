@@ -17,36 +17,43 @@
      if (!empty($query) && $query != "Enter Query Here")
      {
          print "your query is " . $query . "<br />";
-     }
 
-    $db_connection = mysql_connect("localhost", "cs143", "");
-    mysql_select_db("CS143", $db_connection);
-    $result = mysql_query($query, $db_connection);
-    if (!$result) {
-        die('Query failed: ' . mysql_error());
-    }
-    $i=0;
-    while ($i < mysql_num_fields($result)) {
-
-        $col = mysql_fetch_field($result, $i);
-        if (!$col) {
-            echo "No information available<br />\n";
+        $db_connection = mysql_connect("localhost", "cs143", "");
+        mysql_select_db("CS143", $db_connection);
+        $result = mysql_query($query, $db_connection);
+        if (!$result) {
+            die('Query failed: ' . mysql_error());
         }
-        echo $col->name . "   |   ";
-        $i++;
-    }
 
-    echo "<br />";
+         echo "<table border='1'>";
 
-    while($row = mysql_fetch_row($result)) {
-            for ($i=0; $i<mysql_num_fields($result); $i++) {
-                echo "$row[$i],";
+        $i=0;
+        while ($i < mysql_num_fields($result)) {
+
+            $col = mysql_fetch_field($result, $i);
+            if (!$col) {
+                echo "No information available<br />\n";
             }
-            print "<br />";
+            echo "<th>" . $col->name . "</th>" ;
+            $i++;
+        }
+
+        while($row = mysql_fetch_row($result)) {
+            echo "<tr>";
+                for ($i=0; $i<mysql_num_fields($result); $i++) {
+                    echo "<td>$row[$i]</td>";
+                }
+            echo "</tr>";
+        }
+        echo "</table>";
+
+        mysql_close($db_connection);
     }
 
-    mysql_close($db_connection);
-
+    else
+    {
+        print "Please Enter a Query";
+    }
     ?>
 
 </body>
