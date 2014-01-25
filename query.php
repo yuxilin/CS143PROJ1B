@@ -16,8 +16,7 @@
      $query = $_GET["query"];
      if (!empty($query) && $query != "Enter Query Here")
      {
-         print "your query is " . $query . "<br />";
-
+//         print "your query is " . $query . "<br />";
         $db_connection = mysql_connect("localhost", "cs143", "");
         mysql_select_db("CS143", $db_connection);
         $result = mysql_query($query, $db_connection);
@@ -27,6 +26,7 @@
 
          echo "<table border='1'>";
 
+//      get column names
         $i=0;
         while ($i < mysql_num_fields($result)) {
 
@@ -38,10 +38,16 @@
             $i++;
         }
 
+//      get row values
         while($row = mysql_fetch_row($result)) {
             echo "<tr>";
                 for ($i=0; $i<mysql_num_fields($result); $i++) {
-                    echo "<td>$row[$i]</td>";
+                    if ($row[$i]=== NULL) {
+                        echo "<td>N/A</td>";
+                    }
+                    else {
+                        echo "<td>$row[$i]</td>";
+                    }
                 }
             echo "</tr>";
         }
