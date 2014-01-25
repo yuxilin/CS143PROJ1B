@@ -4,19 +4,19 @@
     <title>Query</title>
 </head>
 
-<body>
-    <h1>OMG yay MySQL</h1>
+<body style="padding: 40px">
+    <h1 style="">OhMySQL</h1>
 
         <form action="query.php" method="get">
-            <textarea name="query"></textarea>
-            <input type="submit" value="Submit">
+            <textarea name="query" cols="60" rows="8" style="border: dotted 2px"></textarea>
+            <input type="submit" value="Submit" style="background-color: #E7E7E7; padding: 47px 24px; position: absolute">
         </form>
     <?php
 
      $query = $_GET["query"];
      if (!empty($query) && $query != "Enter Query Here")
      {
-//         print "your query is " . $query . "<br />";
+        print "<h1>Result: </h1>";
         $db_connection = mysql_connect("localhost", "cs143", "");
         mysql_select_db("CS143", $db_connection);
         $result = mysql_query($query, $db_connection);
