@@ -8,7 +8,7 @@
     <h1 style="">OhMySQL</h1>
 
         <form action="query.php" method="get">
-            <textarea name="query" cols="60" rows="8" style="border: dotted 2px"></textarea>
+            <textarea name="query" cols="60" rows="8" style="border: dotted 2px; position: relative"></textarea>
             <input type="submit" value="Submit" style="background-color: #E7E7E7; padding: 47px 24px; position: absolute">
         </form>
     <?php
