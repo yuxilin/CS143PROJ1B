@@ -9,10 +9,8 @@ FROM Actor A, MovieActor MA, Movie M
 WHERE A.first = 'Pierce' AND A.last = 'Brosnan' AND MA.aid = A.id AND M.id = MA.mid;
 
 -- Returns the count of all actors who acted in multiple movies --
--- SELECT COUNT(DISTINCT aid)
--- FROM MovieActor
--- WHERE
--- GROUP BY aid
--- HAVING COUNT(*)>=2;
-
+SELECT COUNT(*) FROM
+(SELECT aid FROM MovieActor
+GROUP BY aid
+HAVING COUNT(aid)>1) AS SQ;
 
