@@ -1,5 +1,5 @@
 -- Finds the name of all Actors in the movie Die Another Day --
-SELECT A.first, A.last
+SELECT CONCAT(A.first, " ", A.last)
 FROM Actor A, MovieActor MA, Movie M
 WHERE M.id = MA.mid AND MA.aid = A.id AND M.title = 'Die Another Day';
 
