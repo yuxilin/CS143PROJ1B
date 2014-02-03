@@ -2,7 +2,7 @@
 CREATE TABLE Movie (id INT PRIMARY KEY, title VARCHAR(100), year INT, rating VARCHAR(10), company VARCHAR(50), CHECK(id <= (SELECT id FROM MaxMovieID))) ENGINE = INNODB;
 
 --CONSTRAINTS: id should be unique and less than the max person id. date of birth is not null
-CREATE TABLE Actor (id INT PRIMARY KEY, last VARCHAR(20), first VARCHAR(20), sex VARCHAR(6), dob DATE NOT NULL, dod DATE, CHECK(id <= (SELECT id FROM MaxPersonID)) ENGINE = INNODB;
+CREATE TABLE Actor (id INT PRIMARY KEY, last VARCHAR(20), first VARCHAR(20), sex VARCHAR(6), dob DATE NOT NULL, dod DATE, CHECK(id <= (SELECT id FROM MaxPersonID))) ENGINE = INNODB;
 
 --CONSTRAINTS: director id should be unique in the table and less than max person id
 CREATE TABLE Director (id INT PRIMARY KEY, last VARCHAR(20), first VARCHAR(20), dob DATE NOT NULL, dod DATE, CHECK(id <= (SELECT id FROM MaxPersonID))) ENGINE = INNODB;
